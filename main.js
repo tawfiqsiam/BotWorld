@@ -1,3 +1,15 @@
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+
 //Setup for editing the filesystem for config
 var fs = require('fs');
 //Colorful console
@@ -41,11 +53,17 @@ Number.isInteger = Number.isInteger || function(value) {
 };
 
 //On bot.ready
-bot.on('ready', async () =>{
+bot.on('ready', function(){
     console.log(`${bot.user.username}: online`);
 });
 
-bot.on('message', async message =>{
+bot.on('message', function(message){
+  console.log(bot.guilds.size);
+  bot.guilds.forEach(function(guild){
+    console.log(guild.name);
+  });
+  
+    if(message.author.bot) return;
     //setup command variables
     let prefix = config.prefix;
     if(message.content.substring(0, prefix.length)!=prefix){
@@ -276,7 +294,7 @@ bot.on('message', async message =>{
         }
 
         if(authorInfo==undefined){
-            config.users[i] = {"id": user, "balance": 0, "rank": 0, "username": bot.users.get(user).username, "lastPayday": 'never'};
+            config.users[i] = {"id": authorInfo.id, "balance": 0, "rank": 0, "username": bot.users.get(authorInfo.id).username, "lastPayday": 'never'};
             updateJSON();
             authorInfo = config.users[index];
         }
@@ -295,6 +313,64 @@ bot.on('message', async message =>{
             updateJSON();
             return message.channel.send(loseembed);
         }
+    }
+
+    if(command=='give'){
+        let user;
+        if(message.author.username=='NicksWorld'){
+            if(bot.users.find("id", args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))){
+                user = args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', '');
+                for(var i = 0;i<config.users.length;i++){
+                    if(config.users[i].id==user){
+                        config.users[i].balance = config.users[i].balance + Number(args[1]);
+                        let successEmbed = new Discord.RichEmbed()
+                        .setColor('#50BB7C')
+                        .addField('Gave', `${config.users[i].username}`)
+                        .addField('Amount', `${args[1]}`);
+                        return message.channel.send(successEmbed);
+                    }
+                }
+            }
+        }
+    }
+
+    if(command=='set'){
+        let user;
+        if(message.author.username=='NicksWorld'){
+            if(bot.users.find("id", args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))){
+                user = args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', '');
+                for(var i = 0;i<config.users.length;i++){
+                    if(config.users[i].id==user){
+                        config.users[i].balance = Number(args[1]);
+                        let successEmbed = new Discord.RichEmbed()
+                        .setColor('#50BB7C')
+                        .addField('Gave', `${config.users[i].username}`)
+                        .addField('Amount', `${args[1]}`);
+                        return message.channel.send(successEmbed);
+                    }
+                }
+            }
+        }
+    }
+
+    if(command=='source'){
+        let embed = new Discord.RichEmbed()
+        .addField('Github', 'https://github.com/NicksWorld/DiscordEconomy');
+        return message.channel.send(embed);
+    }
+
+    if(command=='botprofile'){
+        let embed = new Discord.RichEmbed()
+        .addField('Profile', 'https://discordbots.org/bot/404762043527462922');
+        return message.channel.send(embed);
+    }
+
+    if(command=='ft'||command=='fortuneteller'){
+        let results = ['You will be rich :money_mouth:', 'You will be fearful of heights.', 'You will want another fortune told.', 'You want a cookie'];
+        let embed = new Discord.RichEmbed()
+        .setTitle(`${message.author.username}'s Fortune`)
+        .setDescription(results[Math.floor(Math.random() * results.length)]);
+        return message.channel.send(embed);
     }
 });
 
