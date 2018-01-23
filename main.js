@@ -429,6 +429,11 @@ bot.on('message', function(message){
         return message.channel.send(output);
     }
 
+    if(command=='uptime'){
+        let uptime = new Discord.RichEmbed()
+        .addField('From: uptimerobot.com', 'https://stats.uptimerobot.com/mYNq3I2JB');
+        message.channel.send(uptime);
+    }
     if(command=='help'){
         let help = new Discord.RichEmbed()
         .setColor('#27AE60')
@@ -440,27 +445,31 @@ bot.on('message', function(message){
         .addField('e-ft', 'get your fortune told...')
         .addField('e-ping', 'pong!')
         .addField('e-botprofile', 'gives my profile')
+        .addField('e-uptime', 'get my uptime from https://uptimerobot.com')
         .addField('e-servers', 'see how many servers have me!')
         .addField('e-source', 'get my source code')
-        .addField('invite', 'invite me to your server');
+        .addField('e-invite', 'invite me to your server');
         return message.channel.send(help);
     }
 
-//     if(command=='eval'){
-//         if(message.author.username=='NicksWorld'){
-//         try {
-//             const code = args.join(" ");
-//             let evaled = eval(code);
+    if(command=='eval'){
+        if(message.author.username=='NicksWorld'){
+        try {
+            const code = args.join(" ");
+            let evaled = eval(code);
 
-//         if (typeof evaled !== "string")
-//         evaled = require("util").inspect(evaled);
-
-//         message.channel.send(clean(evaled), {code:"xl"});
-//     } catch (err) {
-//       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-//     }
-//         }
-//     }
+        if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+        let cleaned = clean(evaled);
+        console.log(cleaned);
+        if(cleaned.toString().search('promise')){
+            message.channel.send(cleaned), {code:"xl"};
+        }
+    } catch (err) {
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
+        }
+    }
 });
 
 bot.login(config.token);

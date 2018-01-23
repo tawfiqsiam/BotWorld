@@ -2,16 +2,19 @@
   "name": "mod-bot",
   "version": "1.0.0",
   "description": "A moderating discord bot",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
-    "test": "start"
+    "start": "node server.js"
   },
   "author": "NicksWorld",
   "license": "MIT",
   "dependencies": {
     "color": "^2.0.1",
+    "discord-bot-list": "^1.0.1",
     "discord.js": "^11.3.0",
     "edit-json-file": "^1.0.8",
-    "fs": "0.0.1-security"
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "request": "^2.83.0"
   }
 }
