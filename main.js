@@ -24,7 +24,7 @@ const dbl = require(`discord-bot-list`);
 
 
 const client = new dbl({
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwNDc2MjA0MzUyNzQ2MjkyMiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE2NjUxMDM4fQ.4h1Xat3MWr3FQm4is0wiwFAlf1la1afLO1IuKEXKEto",
+    token: "",
     id: "404762043527462922"
 })
 
