@@ -8,6 +8,7 @@ app.get("/", (request, response) => {
 app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+  console.log(bot.guilds.size);
 }, 280000);
 
 //Setup for editing the filesystem for config
@@ -19,8 +20,33 @@ const Discord = require('discord.js');
 //Config
 const config = require(`./config.json`);
 
+const dbl = require(`discord-bot-list`);
+
+
+const client = new dbl({
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwNDc2MjA0MzUyNzQ2MjkyMiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE2NjUxMDM4fQ.4h1Xat3MWr3FQm4is0wiwFAlf1la1afLO1IuKEXKEto",
+    id: "404762043527462922"
+})
+
 //Create client
 let bot = new Discord.Client({'disableEveryone': true});
+
+function updateDiscordBotList(){
+    client.postStats(bot.guilds.size, (err, res) => {
+        if(err) {
+            console.error(err);
+        } else {
+            console.log(res);
+        }
+    })
+}
+
+function clean(text) {
+    if (typeof(text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else
+        return text;
+  }
 
 function updateJSON(){
     if(JSON.stringify(config, null, 2).endsWith("}}")){
@@ -55,15 +81,13 @@ Number.isInteger = Number.isInteger || function(value) {
 //On bot.ready
 bot.on('ready', function(){
     console.log(`${bot.user.username}: online`);
+    bot.user.setActivity('e-help');
+    updateDiscordBotList();
 });
 
+bot.on('guildCreate', updateDiscordBotList);
+
 bot.on('message', function(message){
-  console.log(bot.guilds.size);
-  bot.guilds.forEach(function(guild){
-    console.log(guild.name);
-  });
-  
-    if(message.author.bot) return;
     //setup command variables
     let prefix = config.prefix;
     if(message.content.substring(0, prefix.length)!=prefix){
@@ -366,12 +390,77 @@ bot.on('message', function(message){
     }
 
     if(command=='ft'||command=='fortuneteller'){
-        let results = ['You will be rich :money_mouth:', 'You will be fearful of heights.', 'You will want another fortune told.', 'You want a cookie'];
+        let results = ['Love will lead the way.',
+        'If your desires are not extravagant, they will be rewarded.',
+        'A new outlook brightens your image and brings new friends.',
+        'You are not judged by your efforts you put in; you are judged on your performance.',
+        'Sometimes you just need to lay on the floor.', 'Integrity is the essence of everything successful.',
+        'You have an unusually magnetic personality.', 'Let your fantasies unwind...',
+        'Accept what comes to you each day.', 'Joys are often the shadows, cast by sorrows.',
+        'You will always be successful in your professional career',
+        'Don\'t bother looking for fault. The reward for finding it is low.',
+        'Keep your eye out for someone special.',
+        'Follow your bliss and the Universe will open doors where there were once only walls.'];
         let embed = new Discord.RichEmbed()
         .setTitle(`${message.author.username}'s Fortune`)
         .setDescription(results[Math.floor(Math.random() * results.length)]);
         return message.channel.send(embed);
     }
+
+    if(command=='servers'){
+        return message.channel.send(`I am in ${bot.guilds.size} servers`);
+    }
+
+    if(command=='invite'){
+        let invite = new Discord.RichEmbed()
+        .addField('Link', 'https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8');
+        return message.channel.send(invite);
+    }
+
+    if(command=='ping'){
+        return message.channel.send("Pong! " + (new Date().getTime() - message.createdTimestamp) + " ms");
+    }
+
+    if(command=='servernames'){
+        let output = "";
+        bot.guilds.forEach(function(guild){
+            output += guild.name + ` - ${guild.memberCount} - ${guild.id}\n`;
+        })
+        return message.channel.send(output);
+    }
+
+    if(command=='help'){
+        let help = new Discord.RichEmbed()
+        .setColor('#27AE60')
+        .addField('e-help', 'gives commands (this)')
+        .addField('e-bal <user mention (optional)>', 'gives a users balance')
+        .addField('e-pay <amount> <user mention (optional)>', 'sends a user $$')
+        .addField('e-cf <amount>', 'You win you get half your amount added to your balance, lose you lose the amount')
+        .addField('e-rank <user mention (optional)>', 'gives a users rank')
+        .addField('e-ft', 'get your fortune told...')
+        .addField('e-ping', 'pong!')
+        .addField('e-botprofile', 'gives my profile')
+        .addField('e-servers', 'see how many servers have me!')
+        .addField('e-source', 'get my source code')
+        .addField('invite', 'invite me to your server');
+        return message.channel.send(help);
+    }
+
+//     if(command=='eval'){
+//         if(message.author.username=='NicksWorld'){
+//         try {
+//             const code = args.join(" ");
+//             let evaled = eval(code);
+
+//         if (typeof evaled !== "string")
+//         evaled = require("util").inspect(evaled);
+
+//         message.channel.send(clean(evaled), {code:"xl"});
+//     } catch (err) {
+//       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+//     }
+//         }
+//     }
 });
 
 bot.login(config.token);
