@@ -12,7 +12,7 @@
     e-lottery buy - purchase a lottery ticket for $25<br>
    * Fun<br>
     e-rank <user mention (optional)> - Gives a users rank<br>
-   e-8ball <question> - Ask a question...<br>
+    e-8ball <question> - Ask a question<br>
     e-ft - Get your fortune told...<br>
    * Technical<br>
     e-ping - pong!<br>
