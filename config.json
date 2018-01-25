@@ -2,5 +2,8 @@
   "token": "",
   "prefix": "e-",
   "users": [],
-  "ranks": {}
+  "ranks": {},
+  "tickets": {
+    "total": 0
+  }
 }
