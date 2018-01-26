@@ -32,5 +32,5 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['balance', 'bal']
+    names: ['draw']
 }

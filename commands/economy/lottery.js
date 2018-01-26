@@ -49,5 +49,5 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['pay']
+    names: ['lottery']
 }
