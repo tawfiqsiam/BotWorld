@@ -6,7 +6,7 @@
  DiscordEconomy is a discord bot user using discord.js that adds economy commands along with some fun commands. Discord Economy#1500's prefix is 'e-'. This code will not always be up to date with the current version of the bot.
  
  - commands<br>
- DiscordEconomy has many commands in three main catagorys:
+ DiscordEconomy has many commands in three main catagories:
    * Economy<br>
     e-bal <user mention (optional)> - Gives a users balance<br>
     e-pay <amount> <user mention (optional)> - Sends a user $$ <br>
