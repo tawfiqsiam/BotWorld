@@ -42,6 +42,23 @@ fs.readdir('./commands/economy/', function(err, files){
     });
 });
 
+//read fun commands
+fs.readdir('./commands/fun/', function(err, files){
+    if(err) console.log(err);
+
+    let jsfile = files.filter(f => f.split('.').pop() == 'js');
+    if(jsfile.length<=0){
+        console.log('error reading files');
+    }
+
+    jsfile.forEach(function(f, i){
+        let props = require(`./commands/fun/${f}`);
+        props.help.names.forEach(function(name){
+            bot.commands.set(name, props);
+        });
+    });
+});
+
 const client = new dbl({
     token: config.dbl,
     id: "404762043527462922"
@@ -136,40 +153,6 @@ bot.on('message', function(message){
     });
     }
 
-    // if(command=='rank'){
-    //     let usage = 'e-rank <user mention (optional)>';
-    //     let user = message.author.id;
-    //     if(args[0]!=null){
-    //         if(bot.users.find("id", args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))){
-    //             user = args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', '');
-    //         }else{
-    //             let noSuchUserEmbed = new Discord.RichEmbed()
-    //             .setColor('#FF4444')
-    //             .setTitle('Cannot find user')
-    //             .setDescription(`User '${args[0]}' couldn't be found!`)
-    //             .addField('Usage', usage);
-    //             return message.channel.send(noSuchUserEmbed);
-    //         }
-    //     }
-    //     let authorInfo;
-    //     for(var i = 0;i<config.users.length;i++){
-    //         if(config.users[i].id==user){
-    //             authorInfo = config.users[i];
-    //         }
-    //     }
-    //     if(authorInfo==undefined){
-    //         config.users[i] = {"id": user, "balance": 0, "rank": 0, "username": bot.users.get(user).username, "lastPayday": 'never'};
-    //         updateJSON();
-    //         authorInfo = config.users[i];
-    //     }
-
-    //     let rankEmbed = new Discord.RichEmbed()
-    //     .setDescription(`${bot.users.get(user).username}'s Rank`)
-    //     .setColor('#50BB7C')
-    //     .addField('Rank', authorInfo.rank);
-    //     return message.channel.send(rankEmbed);
-    // }
-
     // if(command=='source'){
     //     let embed = new Discord.RichEmbed()
     //     .setColor('#50BB7C')
@@ -181,28 +164,6 @@ bot.on('message', function(message){
     //     let embed = new Discord.RichEmbed()
     //     .setColor('#50BB7C')
     //     .addField('Profile', 'https://discordbots.org/bot/404762043527462922');
-    //     return message.channel.send(embed);
-    // }
-
-    // if(command=='ft'||command=='fortuneteller'){
-    //     let results = ['Love will lead the way.',
-    //     'If your desires are not extravagant, they will be rewarded.',
-    //     'A new outlook brightens your image and brings new friends.',
-    //     'You are not judged by your efforts you put in; you are judged on your performance.',
-    //     'Sometimes you just need to lay on the floor.',
-    //     'Integrity is the essence of everything successful.',
-    //     'You have an unusually magnetic personality.',
-    //     'Let your fantasies unwind...',
-    //     'Accept what comes to you each day.',
-    //     'Joys are often the shadows, cast by sorrows.',
-    //     'You will always be successful in your professional career',
-    //     'Don\'t bother looking for fault. The reward for finding it is low.',
-    //     'Keep your eye out for someone special.',
-    //     'Follow your bliss and the Universe will open doors where there were once only walls.'];
-    //     let embed = new Discord.RichEmbed()
-    //     .setTitle(`${message.author.username}'s Fortune`)
-    //     .setColor('#50BB7C')
-    //     .addField('Fortune', results[Math.floor(Math.random() * results.length)]);
     //     return message.channel.send(embed);
     // }
 
@@ -268,29 +229,6 @@ bot.on('message', function(message){
     //     }
     // }
 
-    // if(command=='8ball'){
-    //     let ball = new Discord.RichEmbed()
-    //     .setColor('#50BB7C')
-    //     .setTitle(args.join(' '))
-    //     .setImage(`https://raw.githubusercontent.com/NicksWorld/DiscordEconomy/master/8ball%20images/${Math.floor(Math.random() * 8) + 1}.png`)
-    //     message.channel.send(ball);
-    // }
-
-    // if(command=='embed'){
-    //     let usage = 'e-embed <url (ends with .png, .gif, .jpeg, or .jpg)>';
-    //     if(args[0]==undefined || args[0]==''){
-    //         return message.channel.send('please include the url...');
-    //     }
-    //     if(args[0].startsWith('./')||args[0].startsWith('../')){
-    //         return message.channel.send('No way!');
-    //     }
-    //     if(!args[0].endsWith('.png') && !args[0].endsWith('.jpg') && !args[0].endsWith('.jpeg') && !args[0].endsWith('.gif')){
-    //         return message.channel.send('Url must end with .png, .gif, .jpg, or .jpeg');
-    //     }
-    //     message.channel.sendFile(args[0]);
-    //     return message.delete();
-    // }
-
     // if(command=='rolecount'){
     //     let roleEmbed = new Discord.RichEmbed()
     //     .setColor('#50BB7C');
@@ -299,43 +237,6 @@ bot.on('message', function(message){
     //         roleEmbed.addField(role.name, role.members.size);
     //     });
     //   message.channel.send(roleEmbed);
-    // }
-
-    // if(command=='discriminator'){
-    //     let usage = 'e-discriminator <discriminator>';
-    //     if(args[0]==''||args[0]==undefined){
-    //         let noNumberEmbed = new Discord.RichEmbed()
-    //         .setColor('#FF4444')
-    //         .setTitle('The first argument does not exist')
-    //         .setDescription(`Please include the discriminator`)
-    //         .addField('Usage', usage);
-    //         return message.channel.send(noNumberEmbed);
-    //     }
-
-    //     if(Math.floor(args[0]) != args[0]){
-    //         let noNumberEmbed = new Discord.RichEmbed()
-    //         .setColor('#FF4444')
-    //         .setTitle('The first argument is not a number')
-    //         .addField('Usage', usage);
-    //         return message.channel.send(noNumberEmbed);
-    //     }
-
-    //     let out = '```js\n'
-    //     let found = false;
-    //     bot.users.forEach(function(user){
-    //         if(user.discriminator==args[0]){
-    //             out+=user.username + '#' + user.discriminator + '\n';
-    //             found = true;
-    //         }
-    //     });
-    //     if(found){
-    //         return message.channel.send(out + '```');
-    //     }else{
-    //         let noUsersEmbed = new Discord.RichEmbed()
-    //         .setColor('#FF4444')
-    //         .setTitle('The discriminator has no users')
-    //         return message.channel.send(noUsersEmbed);
-    //     }
     // }
 
     // if(command=='help'){
