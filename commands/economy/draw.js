@@ -10,7 +10,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             let noTicketsEmbed = new Discord.RichEmbed()
             .setColor('#FF2D40')
             .setTitle('No tickets have been purchased, this time...')
-            .addField('How to buy?', 'Use e-lottery buy to purchase a ticket');
+            .addField('How to buy?', 'Use e-lottery buy to purchase a ticket')
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(noTicketsEmbed);
         }
         for(var i=0;i<config.users.length;i++){

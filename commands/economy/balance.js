@@ -13,7 +13,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
                 .setColor('#FF4444')
                 .setTitle('Cannot find user')
                 .setDescription(`User '${args[0]}' couldn't be found!`)
-                .addField('Usage', usage);
+                .addField('Usage', usage)
+                .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
                 return message.channel.send(noSuchUserEmbed);
             }
         }
@@ -32,7 +33,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         let balanceEmbed = new Discord.RichEmbed()
         .setDescription(`${bot.users.get(user).username}'s Balance`)
         .setColor('#50BB7C')
-        .addField('Balance', authorInfo.balance);
+        .addField('Balance', authorInfo.balance)
+        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
         return message.channel.send(balanceEmbed);
 }
 

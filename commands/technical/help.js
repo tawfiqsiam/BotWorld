@@ -23,7 +23,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         .addField('e-servernames', 'see what servers have me!')
         .addField('e-source', 'get my source code')
         .addField('e-invite', 'invite me to your server')
-        .addField('e-support', 'get the invite to my support server');
+        .addField('e-support', 'get the invite to my support server')
+        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
         return message.channel.send(help);
 }
 

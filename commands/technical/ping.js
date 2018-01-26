@@ -7,6 +7,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         .setColor('#50BB7C')
         .setTitle(':ping_pong: Pong!')
         .addField('Time', (new Date().getTime() - message.createdTimestamp) + ' ms')
+        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
         return message.channel.send(ping);
 }
 

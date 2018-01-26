@@ -5,7 +5,8 @@ const config = require(`./../../config.json`);
 module.exports.run = function(bot, command, args, message, updateJSON){
         let invite = new Discord.RichEmbed()
         .addField('Support server link', 'https://discordapp.com/invite/VVmeG9U')
-        .setColor('#50BB7C');
+        .setColor('#50BB7C')
+        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
         return message.channel.send(invite);
 }
 

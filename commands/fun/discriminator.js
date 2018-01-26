@@ -9,7 +9,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF4444')
             .setTitle('The first argument does not exist')
             .setDescription(`Please include the discriminator`)
-            .addField('Usage', usage);
+            .addField('Usage', usage)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(noNumberEmbed);
         }
 
@@ -17,7 +18,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             let noNumberEmbed = new Discord.RichEmbed()
             .setColor('#FF4444')
             .setTitle('The first argument is not a number')
-            .addField('Usage', usage);
+            .addField('Usage', usage)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(noNumberEmbed);
         }
 
@@ -35,6 +37,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             let noUsersEmbed = new Discord.RichEmbed()
             .setColor('#FF4444')
             .setTitle('The discriminator has no users')
+            .addField('Usage', usage)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(noUsersEmbed);
         }
 }

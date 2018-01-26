@@ -20,7 +20,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         let embed = new Discord.RichEmbed()
         .setTitle(`${message.author.username}'s Fortune`)
         .setColor('#50BB7C')
-        .addField('Fortune', results[Math.floor(Math.random() * results.length)]);
+        .addField('Fortune', results[Math.floor(Math.random() * results.length)])
+        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
         return message.channel.send(embed);
 }
 

@@ -13,7 +13,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
                         let successEmbed = new Discord.RichEmbed()
                         .setColor('#50BB7C')
                         .addField('Gave', `${config.users[i].username}`)
-                        .addField('Amount', `${args[1]}`);
+                        .addField('Amount', `${args[1]}`)
+                        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
                         return message.channel.send(successEmbed);
                     }
                 }

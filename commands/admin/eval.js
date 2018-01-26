@@ -19,11 +19,21 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             evaled = require("util").inspect(evaled);
             let cleaned = clean(evaled);
          console.log(cleaned);
-            if(cleaned.toString().search('Promise') && cleaned.toString().search('undefined')){
-                return message.channel.send(cleaned), {code:"xl"};
-            }
+         let embed = new Discord.RichEmbed()
+         .setColor('#688E1E')
+         .setTitle('Evaluation')
+         .addField(':inbox_tray: Input', '```js\n' + code + '```')
+         .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
+         .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+         return message.channel.send(embed);
       } catch (err) {
-        return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+        let embed = new Discord.RichEmbed()
+        .setColor('#770306')
+        .setTitle('Error')
+        .addField(':inbox_tray: Input', '```js\n' + args.join(" ") + '```')
+        .addField(':outbox_tray: Output', '```xl\n' + err + '```')
+        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        return message.channel.send(embed);
      }
         return;
     }

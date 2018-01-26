@@ -10,7 +10,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF4444')
             .setTitle(`Not a number`)
             .setDescription(`${args[0]} is not a number or is a decimal`)
-            .addField('Usage', usage);
+            .addField('Usage', usage)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(notNumberEmbed);
         }
 
@@ -19,7 +20,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF4444')
             .setTitle(`amount less than or is $0`)
             .setDescription(`You must bet atleast $1`)
-            .addField('Usage', usage);
+            .addField('Usage', usage)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(notBigEnoughBetEmbed);
         }
         let authorInfo;
@@ -42,20 +44,23 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             let notEnoughMoneyEmbed = new Discord.RichEmbed()
             .setTitle('Not enough money!')
             .setColor('#FF2D40')
-            .addField('Cannot fullfil your request :cry:', `You don't have enough money to give! ${args[0]} > ${authorInfo.balance}`);
+            .addField('Cannot fullfil your request :cry:', `You don't have enough money to give! ${args[0]} > ${authorInfo.balance}`)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(notEnoughMoneyEmbed);
         }
 
         if(Math.floor(Math.random() * 2) + 1 == 1){
             let winembed = new Discord.RichEmbed()
             .setColor('#50BB7C')
-            .addField('Result:', `You have won $${Number(args[0])/2} :D`);
+            .addField('Result:', `You have won $${Number(args[0])/2} :D`)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             config.users[i].balance = config.users[i].balance + Number(args[0]/2);
             return message.channel.send(winembed);
         }else{
             let loseembed = new Discord.RichEmbed()
             .setColor('#FF2D40')
-            .addField('Result:', `You have lost $${Number(args[0])} D:`);
+            .addField('Result:', `You have lost $${Number(args[0])} D:`)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             config.users[i].balance = config.users[i].balance - Number(args[0]);
             updateJSON();
             return message.channel.send(loseembed);

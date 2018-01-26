@@ -39,7 +39,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
                     let balanceEmbed = new Discord.RichEmbed()
                     .setDescription(`${message.author.username}'s New Balance`)
                     .setColor('#50BB7C')
-                    .addField('Balance', authorInfo.balance);
+                    .addField('Balance', authorInfo.balance)
+                    .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
                     return message.channel.send(balanceEmbed);
                 }
             }
@@ -47,7 +48,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             let timeremainingembed = new Discord.RichEmbed()
             .setColor('#FF2D40')
             .setTitle('30 minute cooldown not complete')
-            .addField(`Please wait`, `${convertMS(1800000 - (Date.now() - authorInfo.lastPayday)).m} Minutes and ${convertMS(1800000 - (Date.now() - authorInfo.lastPayday)).s} Seconds`);
+            .addField(`Please wait`, `${convertMS(1800000 - (Date.now() - authorInfo.lastPayday)).m} Minutes and ${convertMS(1800000 - (Date.now() - authorInfo.lastPayday)).s} Seconds`)
+            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
             return message.channel.send(timeremainingembed);
         }
 }
