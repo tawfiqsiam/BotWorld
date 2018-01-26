@@ -520,11 +520,19 @@ bot.on('message', function(message){
         evaled = require("util").inspect(evaled);
         let cleaned = clean(evaled);
         console.log(cleaned);
-        if(cleaned.toString().search('Promise') && cleaned.toString().search('undefined')){
-            return message.channel.send(cleaned), {code:"xl"};
-        }
+          let embed = new Discord.RichEmbed()
+          .setTitle('Evaluation complete!')
+          .setColor('#50BB7C')
+          .addField(':in_tray: Input', code, {code:"js"})
+          .addField(':out_tray: Output', evaled, {code:"xl"});
+            return message.channel.send(embed);
     } catch (err) {
-      return message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      let error = new Discord.RichEmbed()
+      .setTitle('Error proccessing code :cry:')
+      .setColor(''#FF4444'')
+      .addField(':in_tray: Input', code, {code:"js"})
+      .addField(':out_tray: Error', `\`\`\`xl\n${clean(err)}\`\`\``, {code:"xl"});
+      return message.channel.send(error);
     }
     return;
         }
