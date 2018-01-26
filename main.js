@@ -95,6 +95,7 @@ bot.on('guildDelete', updateDiscordBotList);
 bot.on('message', function(message){
     //setup command variables
     let prefix = config.prefix;
+    if(message.content.substring(0, prefix.length)!=prefix) return;
     // if(message.content.substring(0, prefix.length)!=prefix){
     //     let configIndex;
     //     let authorInfo;
@@ -288,33 +289,6 @@ bot.on('message', function(message){
     //     }
     //     message.channel.sendFile(args[0]);
     //     return message.delete();
-    // }
-
-    // if(command=='draw'){
-    //     let ticketChose = Math.floor(Math.random() * config.tickets.total) + 1;
-    //     let ticketOn = 0;
-    //     if(config.tickets.total == 0){
-    //         let noTicketsEmbed = new Discord.RichEmbed()
-    //         .setColor('#FF2D40')
-    //         .setTitle('No tickets have been purchased, this time...')
-    //         .addField('How to buy?', 'Use e-lottery buy to purchase a ticket');
-    //         return message.channel.send(noTicketsEmbed);
-    //     }
-    //     for(var i=0;i<config.users.length;i++){
-    //         if(config.users[i].tickets>=1){
-    //             for(var i2=0;i2<config.users[i].tickets;i2++){
-    //                 ticketOn++;
-    //                 if(ticketOn==ticketChose){
-    //                     config.users[i].balance += config.tickets.total * 25;
-    //                     message.channel.send(`${config.users[i].username} won $${config.tickets.total * 25} in the lottery`);
-    //                     config.tickets.total = 0;
-    //                     for(var index = 0;index<config.users.length;index++){
-    //                         config.users[index].tickets = 0;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
     // }
 
     // if(command=='rolecount'){
