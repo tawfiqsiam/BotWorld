@@ -12,6 +12,7 @@
     e-pay <amount> <user mention (optional)> - Sends a user $$ <br>
     e-cf <amount> - You win you get half your amount added to your balance, lose you lose the amount<br>
     e-lottery buy - purchase a lottery ticket for $25<br>
+    e-draw - draw the winning lottery ticket<br>
    * Fun<br>
     e-rank <user mention (optional)> - Gives a users rank<br>
     e-8ball <question> - Ask a question<br>
