@@ -91,6 +91,23 @@ fs.readdir('./commands/technical/', function(err, files){
     });
 });
 
+//Read music commands
+fs.readdir('./commands/music/', function(err, files){
+    if(err) console.log(err);
+
+    let jsfile = files.filter(f => f.split('.').pop() == 'js');
+    if(jsfile.length<=0){
+        console.log('error reading files');
+    }
+
+    jsfile.forEach(function(f, i){
+        let props = require(`./commands/music/${f}`);
+        props.help.names.forEach(function(name){
+            bot.commands.set(name, props);
+        });
+    });
+});
+
 
 const client = new dbl({
     token: config.dbl,
