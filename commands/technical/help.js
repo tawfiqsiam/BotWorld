@@ -67,6 +67,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
                     let props = require(`/app/commands/technical/${f}`);
                     technicalCommands.addField('e-' + props.help.names[0], props.help.description);
                 });
+                addFooter(technicalCommands, bot, message, command, args);
                 return message.channel.send(technicalCommands);
             });
 
@@ -89,6 +90,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
                     let props = require(`/app/commands/admin/${f}`);
                     adminCommands.addField('e-' + props.help.names[0], props.help.description);
                 });
+                addFooter(adminCommands, bot, message, command, args);
                 return message.channel.send(adminCommands);
             });
             
@@ -100,6 +102,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             .addField('Fun', 'e-help fun')
             .addField('Technical', 'e-help technical')
             .addField('Admin', 'e-help admin');
+            addFooter(help, bot, message, command, args);
             return message.channel.send(help);
         }
 }

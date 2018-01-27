@@ -7,7 +7,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         .setColor('#50BB7C')
         .setTitle('Uptime')
         .addField('From: uptimerobot.com', 'https://stats.uptimerobot.com/mYNq3I2JB')
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        addFooter(uptime, bot, message, command, args);
         message.channel.send(uptime);
 }
 

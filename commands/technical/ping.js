@@ -7,6 +7,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         .setColor('#50BB7C')
         .setTitle(':ping_pong: Pong!')
         .addField('Time', (new Date().getTime() - message.createdTimestamp) + ' ms')
+        addFooter(ping, bot, message, command, args);
         return message.channel.send(ping);
 }
 

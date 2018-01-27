@@ -6,7 +6,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         let invite = new Discord.RichEmbed()
         .addField('Link', 'https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8')
         .setColor('#50BB7C')
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        addFooter(invite, bot, message, command, args);
         return message.channel.send(invite);
 }
 

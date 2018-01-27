@@ -6,7 +6,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         let embed = new Discord.RichEmbed()
         .setColor('#50BB7C')
         .addField('Github', 'https://github.com/NicksWorld/DiscordEconomy')
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        addFooter(embed, bot, message, command, args);
         return message.channel.send(embed);
 }
 
