@@ -7,24 +7,37 @@
  
  - commands<br>
  DiscordEconomy has many commands in three main catagories:
-   * Economy<br>
-    e-bal <user mention (optional)> - Gives a users balance<br>
-    e-pay <amount> <user mention (optional)> - Sends a user $$ <br>
-    e-cf <amount> - You win you get half your amount added to your balance, lose you lose the amount<br>
-    e-lottery buy - purchase a lottery ticket for $25<br>
-    e-draw - draw the winning lottery ticket<br>
-   * Fun<br>
-    e-rank <user mention (optional)> - Gives a users rank<br>
-    e-8ball <question> - Ask a question<br>
-    e-ft - Get your fortune told...<br>
-   * Technical<br>
-    e-ping - pong!<br>
-    e-botprofile - gives my profile<br>
-    e-uptime - get my uptime from https://uptimerobot.com<br>
-    e-servers - see how many servers have me!<br>
-    e-servernames - see what servers have me!<br>
-    e-source - get my source code!<br>
-    e-invite - invite me to your server<br>
+* Economy<br>
+    e-balance - props.help.description<br>
+    e-coinflip - props.help.description<br>
+    e-draw - props.help.description<br>
+    e-lottery - props.help.description<br>
+    e-pay - props.help.description<br>
+    e-payday - props.help.description<br>
+* Technical<br>
+    e-botprofile - props.help.description<br>
+    e-help - props.help.description<br>
+    e-invite - props.help.description<br>
+    e-ping - props.help.description<br>
+    e-readme - props.help.description<br>
+    e-rolecount - props.help.description<br>
+    e-servernames - props.help.description<br>
+    e-servers - props.help.description<br>
+    e-source - props.help.description<br>
+    e-support - props.help.description<br>
+    e-uptime - props.help.description<br>
+* Fun<br>
+    e-8ball - props.help.description<br>
+    e-discriminator - props.help.description<br>
+    e-embed - props.help.description<br>
+    e-fortuneteller - props.help.description<br>
+    e-rank - props.help.description<br>
+    e-trivia - props.help.description<br>
+* Admin<br>
+    e-evaluate - props.help.description<br>
+    e-give - props.help.description<br>
+    e-restart - props.help.description<br>
+    e-set - props.help.description<br>
  - Where to get it?<br>
  https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8
 
