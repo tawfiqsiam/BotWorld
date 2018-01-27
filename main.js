@@ -120,7 +120,9 @@ bot.on('guildDelete', updateDiscordBotList);
 bot.on('message', function(message){
     //setup command variables
     let prefix = config.prefix;
-    if(message.content.substring(0, prefix.length)!=prefix && message.content) return;
+    if(message.content.toLowerCase().substring(0, prefix.length)!=prefix && message.content){
+      return;
+    }
     let args = message.content.split(" ");
     let command = args[0];
     command = command.slice(prefix.length).toLowerCase();
