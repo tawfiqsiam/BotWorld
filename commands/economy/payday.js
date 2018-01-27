@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
     
     function convertMS(ms) {
         var m, s;
@@ -40,7 +40,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
                     .setDescription(`${message.author.username}'s New Balance`)
                     .setColor('#50BB7C')
                     .addField('Balance', authorInfo.balance)
-                    .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+                    addFooter(balanceEmbed, bot, message, command, args);
                     return message.channel.send(balanceEmbed);
                 }
             }
@@ -49,7 +49,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF2D40')
             .setTitle('30 minute cooldown not complete')
             .addField(`Please wait`, `${convertMS(1800000 - (Date.now() - authorInfo.lastPayday)).m} Minutes and ${convertMS(1800000 - (Date.now() - authorInfo.lastPayday)).s} Seconds`)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(timeremainingembed, bot, message, command, args);
             return message.channel.send(timeremainingembed);
         }
 }

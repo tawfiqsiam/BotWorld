@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
         if(command=='draw'){
         let ticketChose = Math.floor(Math.random() * config.tickets.total) + 1;
         let ticketOn = 0;
@@ -11,7 +11,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF2D40')
             .setTitle('No tickets have been purchased, this time...')
             .addField('How to buy?', 'Use e-lottery buy to purchase a ticket')
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(noTicketsEmbed, bot, message, command, args);
             return message.channel.send(noTicketsEmbed);
         }
         for(var i=0;i<config.users.length;i++){

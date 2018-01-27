@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
         let usage = 'e-discriminator <discriminator>';
         if(args[0]==''||args[0]==undefined){
             let noNumberEmbed = new Discord.RichEmbed()
@@ -10,7 +10,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setTitle('The first argument does not exist')
             .setDescription(`Please include the discriminator`)
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(noNumberEmbed, bot, message, command, args);
             return message.channel.send(noNumberEmbed);
         }
 
@@ -19,7 +19,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF4444')
             .setTitle('The first argument is not a number')
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(noNumberEmbed, bot, message, command, args);
             return message.channel.send(noNumberEmbed);
         }
 
@@ -40,7 +40,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setColor('#FF4444')
             .setTitle('The discriminator has no users')
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(noUsersEmbed, bot, message, command, args);
             return message.channel.send(noUsersEmbed);
         }
 }

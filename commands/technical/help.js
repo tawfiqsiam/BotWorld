@@ -2,8 +2,9 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`/app/config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
         if(args[0]=='economy'){
+
             let economyCommands = new Discord.RichEmbed()
             .setColor('#7373FF')
             .setTitle('Economy help');
@@ -18,11 +19,15 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/economy/${f}`);
-                    economyCommands.addField('e-' + props.names[0], props.help.description);
+                    economyCommands.addField('e-' + props.help.names[0], props.help.description);
                 });
+                addFooter(economyCommands, bot, message, command, args);
+                return message.channel.send(economyCommands);
             });
-            return message.channel.send(economyCommands);
+
+
         }else if(args[0]=='fun'){
+
             let funCommands = new Discord.RichEmbed()
             .setColor('#7373FF')
             .setTitle('Fun help');
@@ -37,11 +42,15 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/fun/${f}`);
-                    funCommands.addField('e-' + props.names[0], props.help.description);
+                    funCommands.addField('e-' + props.help.names[0], props.help.description);
                 });
+                addFooter(funCommands, bot, message, command, args);
+                return message.channel.send(funCommands);
             });
-            return message.channel.send(funCommands);
+
+
         }else if(args[0]=='technical'){
+
             let technicalCommands = new Discord.RichEmbed()
             .setColor('#7373FF')
             .setTitle('Technical help');
@@ -56,12 +65,14 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/technical/${f}`);
-                    technicalCommands.addField('e-' + props.names[0], props.help.description);
+                    technicalCommands.addField('e-' + props.help.names[0], props.help.description);
                 });
+                return message.channel.send(technicalCommands);
             });
-            return message.channel.send(technicalCommands);
+
 
         }else if(args[0]=='admin'){
+            
             let adminCommands = new Discord.RichEmbed()
             .setColor('#7373FF')
             .setTitle('Admin help');
@@ -76,10 +87,10 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/admin/${f}`);
-                    adminCommands.addField('e-' + props.names[0], props.help.description);
+                    adminCommands.addField('e-' + props.help.names[0], props.help.description);
                 });
+                return message.channel.send(adminCommands);
             });
-            return message.channel.send(adminCommands);
             
         }else{
             let help = new Discord.RichEmbed()

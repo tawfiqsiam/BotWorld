@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
            let usage = 'e-rank <user mention (optional)>';
         let user = message.author.id;
         if(args[0]!=null){
@@ -14,7 +14,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
                 .setTitle('Cannot find user')
                 .setDescription(`User '${args[0]}' couldn't be found!`)
                 .addField('Usage', usage)
-                .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+                addFooter(noSuchUserEmbed, bot, message, command, args);
                 return message.channel.send(noSuchUserEmbed);
             }
         }
@@ -34,7 +34,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         .setDescription(`${bot.users.get(user).username}'s Rank`)
         .setColor('#50BB7C')
         .addField('Rank', authorInfo.rank)
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        addFooter(rankEmbed, bot, message, command, args);
         return message.channel.send(rankEmbed);
 }
 

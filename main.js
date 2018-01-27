@@ -139,6 +139,8 @@ bot.on('message', function(message){
                 if (err) return console.log(err);
             });
         }
+    }, function addFooter(embed, bot, message, command, args){
+        embed.setFooter(bot.user.username + '#1500' + new Date().toISOString(), bot.user.avatarURL);
     });
     }
 });

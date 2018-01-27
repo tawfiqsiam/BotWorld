@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
         let usage = 'e-embed <url (ends with .png, .gif, .jpeg, or .jpg)>';
         if(args[0]==undefined || args[0]==''){
             return message.channel.send('please include the url...');

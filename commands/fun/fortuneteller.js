@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
         let results = ['Love will lead the way.',
         'If your desires are not extravagant, they will be rewarded.',
         'A new outlook brightens your image and brings new friends.',
@@ -21,7 +21,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         .setTitle(`${message.author.username}'s Fortune`)
         .setColor('#50BB7C')
         .addField('Fortune', results[Math.floor(Math.random() * results.length)])
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        addFooter(embed, bot, message, command, args);
         return message.channel.send(embed);
 }
 

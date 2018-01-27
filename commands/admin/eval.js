@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
     function clean(text) {
         if (typeof(text) === "string")
           return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -10,7 +10,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             return text;
       }
       
-    if(message.author.username=='NicksWorld'){
+    if(message.author.id=='292377829105205249'){
          try {
             const code = args.join(" ");
             let evaled = eval(code);
@@ -24,7 +24,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
          .setTitle('Evaluation')
          .addField(':inbox_tray: Input', '```js\n' + code + '```')
          .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
-         .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+         addFooter(embed, bot, message, command, args);
          return message.channel.send(embed);
       } catch (err) {
         let embed = new Discord.RichEmbed()
@@ -32,7 +32,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         .setTitle('Error')
         .addField(':inbox_tray: Input', '```js\n' + args.join(" ") + '```')
         .addField(':outbox_tray: Output', '```xl\n' + err.toString() + '```')
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+        addFooter(embed, bot, message, command, args);
         return message.channel.send(embed);
      }
         return;

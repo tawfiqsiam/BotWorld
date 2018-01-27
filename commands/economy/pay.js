@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON){
+module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
         let usage = 'e-pay <amount> <user mention (optional)>';
         if(args[0] == ""||args[0]==undefined){
             let missingAmountEmbed = new Discord.RichEmbed()
@@ -10,7 +10,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setTitle('Cannot get the amount from the first argument')
             .setDescription(`First argument must be included`)
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(missingAmountEmbed, bot, message, command, args);
             return message.channel.send(missingAmountEmbed);
         }
 
@@ -20,7 +20,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setTitle('Not a number')
             .setDescription(`"${args[0]}" is not a number or is a decimal`)
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(notNumberEmbed, bot, message, command, args);
             return message.channel.send(notNumberEmbed);
         }
 
@@ -30,7 +30,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setTitle('Cannot get the user mention from the second argument')
             .setDescription(`Second argument must be included`)
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(noUserEmbed, bot, message, command, args);
             return message.channel.send(noUserEmbed);
         }
         let authorInfo;
@@ -46,7 +46,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setTitle('Not enough money!')
             .setColor('#FF2D40')
             .addField('Cannot fullfil your request :cry:', `You don't have enough money to give! ${args[0]} > ${authorInfo.balance}`)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(notEnoughMoneyEmbed, bot, message, command, args);
             return message.channel.send(notEnoughMoneyEmbed);
         }
 
@@ -60,7 +60,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             .setTitle('Cannot find the user mention from the second argument')
             .setDescription(`User '${args[1]}' is not found`)
             .addField('Usage', usage)
-            .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+            addFooter(noUserEmbed, bot, message, command, args);
             return message.channel.send(noUserEmbed);
         }else{
             let success = false;
@@ -87,7 +87,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
                 .setColor('#FF4444')
                 .setTitle(`Cannot send money to user '${args[1]}'`)
                 .setDescription(`Fix by doing e-bal ${args[1]}`)
-                .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
+                addFooter(cannotReciveEmbed, bot, message, command, args);
                 return message.channel.send(cannotReciveEmbed);
             }
         }
