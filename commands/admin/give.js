@@ -23,5 +23,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['give']
+    names: ['give'],
+    usage: 'e-give <user mention> <amount>',
+    description: 'Give a user new money'
 }

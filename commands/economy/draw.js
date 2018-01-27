@@ -33,5 +33,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['draw']
+    names: ['draw'],
+    usage: 'e-draw',
+    description: 'Draws the winning lottery ticket'
 }

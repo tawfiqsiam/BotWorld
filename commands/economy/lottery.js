@@ -50,5 +50,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['lottery']
+    names: ['lottery'],
+    usage: 'e-lottery buy',
+    description: 'Buy a lottery ticket'
 }

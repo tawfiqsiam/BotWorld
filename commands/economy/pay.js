@@ -94,5 +94,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['pay']
+    names: ['pay'],
+    usage: 'e-pay <amount> <user mention>',
+    description: 'Pay a user from  your balance'
 }

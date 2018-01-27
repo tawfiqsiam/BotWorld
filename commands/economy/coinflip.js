@@ -68,5 +68,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
     }
 
 module.exports.help = {
-    names: ['coinflip', 'cf']
+    names: ['coinflip', 'cf'],
+    usage: 'e-cf <amount>',
+    description: 'Bet money where you lose all or win half'
 }

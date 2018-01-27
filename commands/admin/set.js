@@ -23,5 +23,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['set']
+    names: ['set'],
+    usage: 'e-set <user mention> <amount>',
+    description: 'Set a users balance'
 }

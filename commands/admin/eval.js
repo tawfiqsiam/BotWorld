@@ -12,8 +12,8 @@ module.exports.run = function(bot, command, args, message, updateJSON){
       
     if(message.author.username=='NicksWorld'){
          try {
-                const code = args.join(" ");
-                let evaled = eval(code);
+            const code = args.join(" ");
+            let evaled = eval(code);
 
             if (typeof evaled !== "string")
             evaled = require("util").inspect(evaled);
@@ -31,7 +31,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
         .setColor('#770306')
         .setTitle('Error')
         .addField(':inbox_tray: Input', '```js\n' + args.join(" ") + '```')
-        .addField(':outbox_tray: Output', '```xl\n' + err + '```')
+        .addField(':outbox_tray: Output', '```xl\n' + err.toString() + '```')
         .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
         return message.channel.send(embed);
      }
@@ -40,5 +40,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['evaluate', 'eval']
+    names: ['evaluate', 'eval'],
+    usage: 'e-eval <code>',
+    description: 'Evaluates code'
 }

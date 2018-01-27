@@ -12,5 +12,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['8ball']
+    names: ['8ball'],
+    usage: 'e-8ball <question>',
+    description: 'Ask a question...'
 }

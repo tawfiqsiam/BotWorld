@@ -4,11 +4,12 @@ const config = require(`./../../config.json`);
 
 module.exports.run = function(bot, command, args, message, updateJSON){
     if(message.author.username=='NicksWorld'){
-        message.channel.send('Killing processes...');
-        process.exit(0);
+        message.channel.send('Killing processes...').then(process.exit());
     }
 }
 
 module.exports.help = {
-    names: ['command']
+    names: ['restart'],
+    usage: 'e-restart',
+    description: 'Restart me'
 }

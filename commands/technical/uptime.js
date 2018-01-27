@@ -12,5 +12,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['uptime', 'up']
+    names: ['uptime', 'up'],
+    usage: 'e-uptime',
+    description: 'Get my uptime info'
 }

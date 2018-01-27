@@ -11,5 +11,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['source']
+    names: ['source'],
+    usage: 'e-source',
+    description: 'Get my source code'
 }

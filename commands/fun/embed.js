@@ -18,5 +18,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['embed']
+    names: ['embed'],
+    usage: 'e-embed <url>',
+    description: 'Embed an image or gif'
 }

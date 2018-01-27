@@ -11,5 +11,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['servernames', 'sn']
+    names: ['servernames', 'sn'],
+    usage: 'e-servernames',
+    description: 'Get what servers I am in'
 }

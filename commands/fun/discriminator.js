@@ -14,7 +14,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
             return message.channel.send(noNumberEmbed);
         }
 
-        if(Math.floor(args[0]) != args[0]){
+        if(typeof Math.floor(args[0]) == 'int'){
             let noNumberEmbed = new Discord.RichEmbed()
             .setColor('#FF4444')
             .setTitle('The first argument is not a number')
@@ -25,11 +25,13 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 
         let out = '```js\n'
         let found = false;
-        bot.users.forEach(function(user){
-            if(user.discriminator==args[0]){
-                out+=user.username + '#' + user.discriminator + '\n';
-                found = true;
-            }
+        bot.guilds.forEach(function(guild){
+            guild.members.forEach(function(member){
+                if(member.user.discriminator==args[0]){
+                    out+=member.user.username + '#' + member.user.discriminator + '\n';
+                    found = true;
+                }
+            });
         });
         if(found){
             return message.channel.send(out + '```');
@@ -44,5 +46,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['discriminator', 'discrim']
+    names: ['discriminator', 'discrim'],
+    usage: 'e-discrim <discriminator ex user#discriminator>',
+    description: 'Get users with a discriminator'
 }

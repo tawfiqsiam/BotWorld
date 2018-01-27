@@ -11,5 +11,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['support']
+    names: ['support'],
+    usage: 'e-support',
+    description: 'Join the support server'
 }

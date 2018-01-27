@@ -97,8 +97,8 @@ const client = new dbl({
     id: "404762043527462922"
 });
 
-function updateDiscordBotList(){
-    client.postStats(bot.guilds.size, (err, res) => {
+function updateDiscordBotList(count){
+    client.postStats(count, (err, res) => {
         if(err) {
             console.error(err);
         } else {
@@ -111,7 +111,7 @@ function updateDiscordBotList(){
 bot.on('ready', function(){
     console.log(`${bot.user.username}: online`);
     bot.user.setActivity('e-help');
-    updateDiscordBotList();
+    updateDiscordBotList(bot.guilds.size);
 });
 
 bot.on('guildCreate', updateDiscordBotList);

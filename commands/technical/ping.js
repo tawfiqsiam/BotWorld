@@ -12,5 +12,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['ping']
+    names: ['ping'],
+    usage: 'e-ping',
+    description: 'Check my ping'
 }

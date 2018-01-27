@@ -1,33 +1,100 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const config = require(`./../../config.json`);
+const config = require(`/app/config.json`);
 
 module.exports.run = function(bot, command, args, message, updateJSON){
-        let help = new Discord.RichEmbed()
-        .setColor('#27AE60')
-        .addField('e-help', 'gives commands (this)')
-        .addField('e-bal <user mention (optional)>', 'gives a users balance')
-        .addField('e-pay <amount> <user mention (optional)>', 'sends a user $$')
-        .addField('e-pd', 'increase your balance by $50')
-        .addField('e-cf <amount>', 'You win you get half your amount added to your balance, lose you lose the amount')
-        .addField('e-lottery buy', 'purchases a lottery ticket for $25')
-        .addField('e-draw', 'draws the winning lottery ticket')
-        .addField('e-rank <user mention (optional)>', 'gives a users rank')
-        .addField('e-ft', 'get your fortune told...')
-        .addField('e-8ball', 'ask me anything...')
-        .addField('e-ping', 'pong!')
-        .addField('e-botprofile', 'gives my profile')
-        .addField('e-discriminator', 'find users with a certain discriminator ex. user#discriminator')
-        .addField('e-uptime', 'get my uptime from uptimerobot')
-        .addField('e-servers', 'see how many servers have me!')
-        .addField('e-servernames', 'see what servers have me!')
-        .addField('e-source', 'get my source code')
-        .addField('e-invite', 'invite me to your server')
-        .addField('e-support', 'get the invite to my support server')
-        .setFooter('DiscordEconomy#1500 ' + new Date().toISOString(), bot.user.avatarURL);
-        return message.channel.send(help);
+        if(args[0]=='economy'){
+            let economyCommands = new Discord.RichEmbed()
+            .setColor('#7373FF')
+            .setTitle('Economy help');
+
+            fs.readdir('/app/commands/economy/', function(err, files){
+                if(err) console.log(err);
+            
+                let jsfile = files.filter(f => f.split('.').pop() == 'js');
+                if(jsfile.length<=0){
+                    console.log('error reading files');
+                }
+            
+                jsfile.forEach(function(f, i){
+                    let props = require(`/app/commands/economy/${f}`);
+                    economyCommands.addField('e-' + props.names[0], props.help.description);
+                });
+            });
+            return message.channel.send(economyCommands);
+        }else if(args[0]=='fun'){
+            let funCommands = new Discord.RichEmbed()
+            .setColor('#7373FF')
+            .setTitle('Fun help');
+
+            fs.readdir('/app/commands/fun/', function(err, files){
+                if(err) console.log(err);
+            
+                let jsfile = files.filter(f => f.split('.').pop() == 'js');
+                if(jsfile.length<=0){
+                    console.log('error reading files');
+                }
+            
+                jsfile.forEach(function(f, i){
+                    let props = require(`/app/commands/fun/${f}`);
+                    funCommands.addField('e-' + props.names[0], props.help.description);
+                });
+            });
+            return message.channel.send(funCommands);
+        }else if(args[0]=='technical'){
+            let technicalCommands = new Discord.RichEmbed()
+            .setColor('#7373FF')
+            .setTitle('Technical help');
+
+            fs.readdir('/app/commands/technical/', function(err, files){
+                if(err) console.log(err);
+            
+                let jsfile = files.filter(f => f.split('.').pop() == 'js');
+                if(jsfile.length<=0){
+                    console.log('error reading files');
+                }
+            
+                jsfile.forEach(function(f, i){
+                    let props = require(`/app/commands/technical/${f}`);
+                    technicalCommands.addField('e-' + props.names[0], props.help.description);
+                });
+            });
+            return message.channel.send(technicalCommands);
+
+        }else if(args[0]=='admin'){
+            let adminCommands = new Discord.RichEmbed()
+            .setColor('#7373FF')
+            .setTitle('Admin help');
+
+            fs.readdir('/app/commands/admin/', function(err, files){
+                if(err) console.log(err);
+            
+                let jsfile = files.filter(f => f.split('.').pop() == 'js');
+                if(jsfile.length<=0){
+                    console.log('error reading files');
+                }
+            
+                jsfile.forEach(function(f, i){
+                    let props = require(`/app/commands/admin/${f}`);
+                    adminCommands.addField('e-' + props.names[0], props.help.description);
+                });
+            });
+            return message.channel.send(adminCommands);
+            
+        }else{
+            let help = new Discord.RichEmbed()
+            .setColor('#7373FF')
+            .setTitle('Catagories:')
+            .addField('Economy', 'e-help economy')
+            .addField('Fun', 'e-help fun')
+            .addField('Technical', 'e-help technical')
+            .addField('Admin', 'e-help admin');
+            return message.channel.send(help);
+        }
 }
 
 module.exports.help = {
-    names: ['help']
+    names: ['help'],
+    usage: 'e-help <section>',
+    description: 'Get help'
 }

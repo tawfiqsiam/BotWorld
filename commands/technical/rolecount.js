@@ -14,5 +14,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['rolecount', 'rc']
+    names: ['rolecount', 'rc'],
+    usage: 'e-rolecount',
+    description: 'Get roles in guild and number of users with the role'
 }

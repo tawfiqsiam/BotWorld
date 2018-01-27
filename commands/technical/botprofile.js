@@ -12,5 +12,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['botprofile', 'bp']
+    names: ['botprofile', 'bp'],
+    usage: 'e-botprofile',
+    description: 'Get my DBL profile link'
 }

@@ -39,5 +39,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['balance', 'bal']
+    names: ['balance', 'bal'],
+    usage: 'e-bal <user mention (optional)',
+    description: 'Get a users balance'
 }

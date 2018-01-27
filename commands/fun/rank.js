@@ -39,5 +39,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['rank']
+    names: ['rank'],
+    usage: 'e-rank <user mention (optional)>',
+    description: 'Get a users rank'
 }

@@ -55,5 +55,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['payday', 'pd']
+    names: ['payday', 'pd'],
+    usage: 'e-pd',
+    description: 'Get $50 every 30 minutes'
 }

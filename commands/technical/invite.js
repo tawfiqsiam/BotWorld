@@ -11,5 +11,7 @@ module.exports.run = function(bot, command, args, message, updateJSON){
 }
 
 module.exports.help = {
-    names: ['invite']
+    names: ['invite'],
+    usage: 'e-invite',
+    description: 'Invite me to your server'
 }
