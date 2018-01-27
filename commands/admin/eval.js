@@ -19,13 +19,23 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             evaled = require("util").inspect(evaled);
             let cleaned = clean(evaled);
          console.log(cleaned);
-         let embed = new Discord.RichEmbed()
-         .setColor('#688E1E')
-         .setTitle('Evaluation')
-         .addField(':inbox_tray: Input', '```js\n' + code + '```')
-         .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
-         addFooter(embed, bot, message, command, args);
-         return message.channel.send(embed);
+         if(args[0]!=undefined && args[0]!=''){
+            let embed = new Discord.RichEmbed()
+            .setColor('#688E1E')
+            .setTitle('Evaluation')
+            .addField(':inbox_tray: Input', '```js\n' + code + '```')
+            .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
+            addFooter(embed, bot, message, command, args);
+            return message.channel.send(embed);
+         }else{
+            let embed = new Discord.RichEmbed()
+            .setColor('#688E1E')
+            .setTitle('Evaluation')
+            .addField(':inbox_tray: Input', '```js\n undefined```')
+            .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
+            addFooter(embed, bot, message, command, args);
+            return message.channel.send(embed);
+         }
       } catch (err) {
         let embed = new Discord.RichEmbed()
         .setColor('#770306')

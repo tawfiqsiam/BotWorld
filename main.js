@@ -120,7 +120,7 @@ bot.on('guildDelete', updateDiscordBotList);
 bot.on('message', function(message){
     //setup command variables
     let prefix = config.prefix;
-    if(message.content.substring(0, prefix.length)!=prefix) return;
+    if(message.content.substring(0, prefix.length)!=prefix && message.content) return;
     let args = message.content.split(" ");
     let command = args[0];
     command = command.slice(prefix.length).toLowerCase();
@@ -140,7 +140,7 @@ bot.on('message', function(message){
             });
         }
     }, function addFooter(embed, bot, message, command, args){
-        embed.setFooter(bot.user.username + '#1500' + new Date().toISOString(), bot.user.avatarURL);
+        embed.setFooter(bot.user.username + `#1500 version 2.5.2 - ` + new Date().toISOString(), bot.user.avatarURL);
     });
     }
 });
