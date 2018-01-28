@@ -5,11 +5,14 @@ const yt = require('ytdl-core');
 
 module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
     message.guild.members.get(message.author.id).voiceChannel.leave();
-    message.channel.send('Left: ' + message.guild.members.get(message.author.id).voiceChannel.name);
+    let leaveEmbed = new Discord.RichEmbed()
+    .setColor('#BBEEEE')
+    .addField('Left', message.guild.members.get(message.author.id).voiceChannel.name)
+    message.channel.send(leaveEmbed);
 }
 
 module.exports.help = {
-    names: ['join'],
+    names: ['leave'],
     usage: 'e-command <args>',
     description: 'what?'
 }
