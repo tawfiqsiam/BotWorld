@@ -40,5 +40,4 @@
     * e-restart - Restart me<br>
     * e-set - Set a users balance<br>
  - Where to get it?<br>
- https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8
-
+ [{Invite Link}](https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8)
