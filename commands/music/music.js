@@ -6,7 +6,7 @@ const yt = require('ytdl-core');
 
 var opts = {
   maxResults: 1,
-  key: 'AIzaSyCFgP40sEixaGAtalv2eh97dNJ695hVdCo'
+  key: ''
 };
 let dispatcher;
 function play(message, song){
