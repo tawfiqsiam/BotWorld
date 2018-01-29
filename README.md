@@ -1,12 +1,12 @@
-# DiscordEconomy
+# Entrepreneur
 
 [![Discord Bots](https://discordbots.org/api/widget/404762043527462922.svg)](https://discordbots.org/bot/404762043527462922)
 
  - What is it?<br>
- DiscordEconomy is a discord bot user using discord.js that adds economy commands along with some fun commands. Discord Economy#1500's prefix is 'e-'. This code will not always be up to date with the current version of the bot.
+ Entrepreneur is a discord bot user using discord.js that adds economy commands along with some fun commands. Entrepreneur#1500's prefix is 'e-'. This code will not always be up to date with the current version of the bot.
  
  - commands<br>
- DiscordEconomy has many commands in three main catagories:
+ Entrepreneur has many commands in three main catagories:
  * Economy<br>
     * e-balance - Get a users balance<br>
     * e-coinflip - Bet money where you lose all or win half<br>
