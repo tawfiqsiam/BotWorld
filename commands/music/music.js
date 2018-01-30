@@ -83,9 +83,13 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
     console.log(queue[message.guild.id][0][0].title)
       let out = 'Queue: \n';
       for(var i=0;i<queue[message.guild.id].length;i++){
-          out += '**' + queue[message.guild.id][i][0].title + '** Requested by: **' + queue[message.guild.id][0].from + '**';
+          out += '**' + queue[message.guild.id][i][0].title + '** Requested by: **' + queue[message.guild.id][i].from + '**';
       }
     message.channel.send(out);
+  }
+  
+  if(args[0]=='playing'){
+    message.channel.send('**' + queue[message.guild.id][0][0].title + '** Requested by: **' + queue[message.guild.id][0].from + '**');
   }
 }
 
