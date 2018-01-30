@@ -6,7 +6,7 @@ const yt = require('ytdl-core');
 
 var opts = {
   maxResults: 1,
-  key: 'youtube v3 API key'
+  key: ''
 };
 let dispatcher;
 function play(message, song){
