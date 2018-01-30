@@ -11,8 +11,8 @@ var opts = {
 let dispatcher;
 function play(message, song){
     if(song!=undefined){
-        message.channel.send(`Playing song **${song[0].title}** ` + '** Requested by: **' + song.from + '**');
-        let stream = yt(song[0].link, { filter : 'audioonly', passes:3 });
+        message.channel.send(`Playing song **${song.results[0].title}** ` + 'Requested by: **' + song.from + '**');
+        let stream = yt(song.results[0].link, { filter : 'audioonly', passes:3 });
         dispatcher = message.guild.voiceConnection.playStream(stream, { seek: 0, volume: 1 });
         dispatcher.once('end', function(){
           setTimeout(function(){
@@ -44,21 +44,19 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
           if(results[0].title==undefined){
             message.channel.send('There were no results for **' + args.slice(1).join(' ') + '**');
           }else{
-            queue[message.guild.id][0] = results;
+            queue[message.guild.id][0] = {results: results, from: message.author.username + '#' + message.author.discriminator};
             message.channel.send(`Queued song **${results[0].title}**`);
-            queue[message.guild.id][0].from = message.author.username + message.author.discriminator;
           }
         });
       }else{
       search(args.slice(1).join(' '), opts, function(err, results) {
         if(err) return console.log(err);
-        if(results[0].title == undefined || request.link.startsWith('https://youtube.com/users')){
+        if(results[0].title == undefined){
           message.channel.send('There were no results for **' + args.slice(1).join(' ') + '**');
         }else{
           console.log(queue[message.guild.id].length);
-          queue[message.guild.id][queue[message.guild.id].length] = results;
+          queue[message.guild.id][queue[message.guild.id].length] = {results: results, from: message.author.username + '#' + message.author.discriminator};
           message.channel.send(`Queued song **${results[0].title}**`);
-          queue[message.guild.id][queue[message.guild.id].length].from = message.author.username + message.author.discriminator;
         }
         });
       }
@@ -80,16 +78,16 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
   }
 
   if(args[0]=='list'){
-    console.log(queue[message.guild.id][0][0].title)
+    console.log(queue[message.guild.id][0].results[0].title)
       let out = 'Queue: \n';
       for(var i=0;i<queue[message.guild.id].length;i++){
-          out += '**' + queue[message.guild.id][i][0].title + '** Requested by: **' + queue[message.guild.id][i].from + '**';
+          out += '**' + queue[message.guild.id][i].results[0].title + '** Requested by: **' + queue[message.guild.id][i].from + '**\n';
       }
     message.channel.send(out);
   }
   
   if(args[0]=='playing'){
-    message.channel.send('**' + queue[message.guild.id][0][0].title + '** Requested by: **' + queue[message.guild.id][0].from + '**');
+    message.channel.send('**' + queue[message.guild.id].results[0].title + '** Requested by: **' + queue[message.guild.id][0].from + '**');
   }
 }
 
