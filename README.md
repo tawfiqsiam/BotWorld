@@ -6,7 +6,7 @@
  Entrepreneur is a discord bot user using discord.js that adds economy commands along with some fun commands. Entrepreneur#1500's prefix is 'e-'. This code will not always be up to date with the current version of the bot.
  
  - commands<br>
- Entrepreneur has many commands in three main catagories:
+ Entrepreneur has many commands in four main catagories:
  * Economy<br>
     * e-balance - Get a users balance<br>
     * e-coinflip - Bet money where you lose all or win half<br>
@@ -29,6 +29,7 @@
 * Fun<br>
     * e-8ball - Ask a question...<br>
     * e-answer - what?<br>
+    * e-ascii - funny text...<br>
     * e-discriminator - Get users with a discriminator<br>
     * e-embed - Embed an image or gif<br>
     * e-fortuneteller - LEt your fortune be told<br>
@@ -39,5 +40,7 @@
     * e-give - Give a user new money<br>
     * e-restart - Restart me<br>
     * e-set - Set a users balance<br>
+* Music<br>
+    * e-music - Play some good music! :D<br>
  - Where to get it?<br>
  [{Invite Link}](https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8)
