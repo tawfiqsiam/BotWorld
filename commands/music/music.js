@@ -11,7 +11,7 @@ var opts = {
 let dispatcher;
 function play(message, song){
     if(song!=undefined){
-        message.channel.send(`Playing song **${song[0].title}**`);
+        message.channel.send(`Playing song **${song[0].title}** ` + '** Requested by: **' + song.from + '**');
         let stream = yt(song[0].link, { filter : 'audioonly', passes:3 });
         dispatcher = message.guild.voiceConnection.playStream(stream, { seek: 0, volume: 1 });
         dispatcher.once('end', function(){
@@ -41,15 +41,25 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         queue[message.guild.id] = [];
         search(args.slice(1).join(' '), opts, function(err, results) {
         if(err) return console.log(err);
+          if(results[0].title==undefined){
+            message.channel.send('There were no results for **' + args.slice(1).join(' ') + '**');
+          }else{
             queue[message.guild.id][0] = results;
             message.channel.send(`Queued song **${results[0].title}**`);
+            queue[message.guild.id][0].from = message.author.username + message.author.discriminator;
+          }
         });
       }else{
       search(args.slice(1).join(' '), opts, function(err, results) {
         if(err) return console.log(err);
-        console.log(queue[message.guild.id].length);
+        if(results[0].title == undefined || request.link.startsWith('https://youtube.com/users')){
+          message.channel.send('There were no results for **' + args.slice(1).join(' ') + '**');
+        }else{
+          console.log(queue[message.guild.id].length);
           queue[message.guild.id][queue[message.guild.id].length] = results;
           message.channel.send(`Queued song **${results[0].title}**`);
+          queue[message.guild.id][queue[message.guild.id].length].from = message.author.username + message.author.discriminator;
+        }
         });
       }
     }else{
@@ -58,7 +68,11 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
   }
   
   if(args[0]=='play'){
+    if(queue[message.guild.id].length<=0){
+      message.channel.send('There are no songs queued! Queue some using e-music queue <song name>');
+    }else{
       play(message, queue[message.guild.id][0]);
+    }
   }
 
   if(args[0]=='skip'){
@@ -69,7 +83,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
     console.log(queue[message.guild.id][0][0].title)
       let out = 'Queue: \n';
       for(var i=0;i<queue[message.guild.id].length;i++){
-          out += queue[message.guild.id][i][0].title + '\n';
+          out += '**' + queue[message.guild.id][i][0].title + '** Requested by: **' + queue[message.guild.id][0].from + '**';
       }
     message.channel.send(out);
   }
@@ -77,6 +91,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['music'],
-    usage: 'e-command <args>',
-    description: 'what?'
+    usage: 'e-music <queue <song>/play/skip/list>',
+    description: 'Play some good music! :D'
 }
