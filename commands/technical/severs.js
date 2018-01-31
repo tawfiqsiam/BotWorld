@@ -8,6 +8,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['servers'],
-    usage: 'e-servers',
+    usage: 'b-servers',
     description: 'Get the number of servers I am in'
 }

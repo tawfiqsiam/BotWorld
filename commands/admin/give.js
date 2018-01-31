@@ -24,6 +24,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['give'],
-    usage: 'e-give <user mention> <amount>',
+    usage: 'b-give <user mention> <amount>',
     description: 'Give a user new money'
 }

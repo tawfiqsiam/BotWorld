@@ -3,7 +3,7 @@ const fs = require('fs');
 const config = require(`./../../config.json`);
 
 module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
-        let usage = 'e-bal <user mention (optional)>';
+        let usage = 'b-bal <user mention (optional)>';
         let user = message.author.id;
         if(args[0]!=null){
             if(bot.users.find("id", args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))){
@@ -40,6 +40,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['balance', 'bal'],
-    usage: 'e-bal <user mention (optional)',
+    usage: 'b-bal <user mention (optional)',
     description: 'Get a users balance'
 }

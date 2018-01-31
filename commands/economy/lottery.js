@@ -3,7 +3,7 @@ const fs = require('fs');
 const config = require(`../../config.json`);
 
 module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
-        let usage = 'e-lottery buy'
+        let usage = 'b-lottery buy'
         if(typeof args[0] == 'string'){
             if(args[0]=='buy'){
                 let authorInfo;
@@ -23,7 +23,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
                 }
 
                 if(authorInfo.balance<25){
-                    return message.reply('You need to have a e-bal of atleast $25');
+                    return message.reply('You need to have a b-bal of atleast $25');
                 }
 
                 if(authorInfo.tickets==undefined){
@@ -42,15 +42,15 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
                 addFooter(embed, bot, message, command, args);
                 return message.channel.send(embed);
             }else{
-                return message.channel.send('The only acceptable argument is the following: buy\nPlease use e-lottery buy');
+                return message.channel.send('The only acceptable argument is the following: buy\nPlease use b-lottery buy');
             }
         }else{
-            return message.channel.send('The only acceptable argument is the following: buy\nPlease use e-lottery buy');
+            return message.channel.send('The only acceptable argument is the following: buy\nPlease use b-lottery buy');
         }
 }
 
 module.exports.help = {
     names: ['lottery'],
-    usage: 'e-lottery buy',
+    usage: 'b-lottery buy',
     description: 'Buy a lottery ticket'
 }

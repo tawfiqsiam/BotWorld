@@ -51,6 +51,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['evaluate', 'eval'],
-    usage: 'e-eval <code>',
+    usage: 'b-eval <code>',
     description: 'Evaluates code'
 }

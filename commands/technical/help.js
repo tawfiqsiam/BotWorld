@@ -19,7 +19,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/economy/${f}`);
-                    economyCommands.addField('e-' + props.help.names[0], props.help.description);
+                    economyCommands.addField('b-' + props.help.names[0], props.help.description);
                 });
                 addFooter(economyCommands, bot, message, command, args);
                 return message.channel.send(economyCommands);
@@ -42,7 +42,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/fun/${f}`);
-                    funCommands.addField('e-' + props.help.names[0], props.help.description);
+                    funCommands.addField('b-' + props.help.names[0], props.help.description);
                 });
                 addFooter(funCommands, bot, message, command, args);
                 return message.channel.send(funCommands);
@@ -65,7 +65,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/technical/${f}`);
-                    technicalCommands.addField('e-' + props.help.names[0], props.help.description);
+                    technicalCommands.addField('b-' + props.help.names[0], props.help.description);
                 });
                 addFooter(technicalCommands, bot, message, command, args);
                 return message.channel.send(technicalCommands);
@@ -88,20 +88,42 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             
                 jsfile.forEach(function(f, i){
                     let props = require(`/app/commands/admin/${f}`);
-                    adminCommands.addField('e-' + props.help.names[0], props.help.description);
+                    adminCommands.addField('b-' + props.help.names[0], props.help.description);
                 });
                 addFooter(adminCommands, bot, message, command, args);
                 return message.channel.send(adminCommands);
             });
             
+        }else if(args[0]=='music'){
+
+            let musicCommands = new Discord.RichEmbed()
+            .setColor('#7373FF')
+            .setTitle('Music help');
+
+            fs.readdir('/app/commands/music/', function(err, files){
+                if(err) console.log(err);
+            
+                let jsfile = files.filter(f => f.split('.').pop() == 'js');
+                if(jsfile.length<=0){
+                    console.log('error reading files');
+                }
+            
+                jsfile.forEach(function(f, i){
+                    let props = require(`/app/commands/music/${f}`);
+                    musicCommands.addField('b-' + props.help.names[0], props.help.description);
+                });
+                addFooter(musicCommands, bot, message, command, args);
+                return message.channel.send(musicCommands);
+            });
         }else{
             let help = new Discord.RichEmbed()
             .setColor('#7373FF')
             .setTitle('Catagories:')
-            .addField('Economy', 'e-help economy')
-            .addField('Fun', 'e-help fun')
-            .addField('Technical', 'e-help technical')
-            .addField('Admin', 'e-help admin');
+            .addField('Economy', 'b-help economy')
+            .addField('Fun', 'b-help fun')
+            .addField('Technical', 'b-help technical')
+            .addField('Music', 'b-help music')
+            .addField('Admin', 'b-help admin');
             addFooter(help, bot, message, command, args);
             return message.channel.send(help);
         }
@@ -109,6 +131,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['help'],
-    usage: 'e-help <section>',
+    usage: 'b-help <section>',
     description: 'Get help'
 }

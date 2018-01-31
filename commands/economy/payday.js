@@ -15,7 +15,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         s = Math.round(s - (m*60));
         return {m: m, s: s};
     };
-        let usage = 'e-pd';
+        let usage = 'b-pd';
         let authorInfo;
         let i;
         for(i = 0;i<config.users.length;i++){
@@ -56,6 +56,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['payday', 'pd'],
-    usage: 'e-pd',
+    usage: 'b-pd',
     description: 'Get $50 every 30 minutes'
 }

@@ -20,6 +20,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['source'],
-    usage: 'e-source',
+    usage: 'b-source',
     description: 'Get my source code'
 }

@@ -13,6 +13,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['ping'],
-    usage: 'e-ping',
+    usage: 'b-ping',
     description: 'Check my ping'
 }

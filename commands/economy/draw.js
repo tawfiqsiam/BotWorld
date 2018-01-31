@@ -10,7 +10,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             let noTicketsEmbed = new Discord.RichEmbed()
             .setColor('#FF2D40')
             .setTitle('No tickets have been purchased, this time...')
-            .addField('How to buy?', 'Use e-lottery buy to purchase a ticket')
+            .addField('How to buy?', 'Use b-lottery buy to purchase a ticket')
             addFooter(noTicketsEmbed, bot, message, command, args);
             return message.channel.send(noTicketsEmbed);
         }
@@ -34,6 +34,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['draw'],
-    usage: 'e-draw',
+    usage: 'b-draw',
     description: 'Draws the winning lottery ticket'
 }

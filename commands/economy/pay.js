@@ -3,7 +3,7 @@ const fs = require('fs');
 const config = require(`../../config.json`);
 
 module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
-        let usage = 'e-pay <amount> <user mention (optional)>';
+        let usage = 'b-pay <amount> <user mention (optional)>';
         if(args[0] == ""||args[0]==undefined){
             let missingAmountEmbed = new Discord.RichEmbed()
             .setColor('#FF4444')
@@ -86,7 +86,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
                 let cannotReciveEmbed = new Discord.RichEmbed()
                 .setColor('#FF4444')
                 .setTitle(`Cannot send money to user '${args[1]}'`)
-                .setDescription(`Fix by doing e-bal ${args[1]}`)
+                .setDescription(`Fix by doing b-bal ${args[1]}`)
                 addFooter(cannotReciveEmbed, bot, message, command, args);
                 return message.channel.send(cannotReciveEmbed);
             }
@@ -95,6 +95,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['pay'],
-    usage: 'e-pay <amount> <user mention>',
+    usage: 'b-pay <amount> <user mention>',
     description: 'Pay a user from  your balance'
 }

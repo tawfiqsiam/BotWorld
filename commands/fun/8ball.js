@@ -13,6 +13,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['8ball'],
-    usage: 'e-8ball <question>',
+    usage: 'b-8ball <question>',
     description: 'Ask a question...'
 }

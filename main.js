@@ -22,7 +22,7 @@ const dbl = require(`discord-bot-list`);
 
 let bot = new Discord.Client({'disableEveryone': true});
 bot.commands = new Discord.Collection();
-bot.dispatchers = new Discord.Collection();
+bot.dispatchers = [];
 
 //Read economy commands
 fs.readdir('./commands/economy/', function(err, files){
@@ -128,7 +128,7 @@ function updateDiscordBotList(count){
 //On bot.ready
 bot.on('ready', function(){
     console.log(`${bot.user.username}: online`);
-    bot.user.setActivity('e-help');
+    bot.user.setActivity('b-help');
     updateDiscordBotList(bot.guilds.size);
 });
 
@@ -136,11 +136,9 @@ bot.on('guildCreate', updateDiscordBotList);
 bot.on('guildDelete', updateDiscordBotList);
 
 bot.on('message', function(message){
-    let prefixMention = new RegExp(`^<@!?${bot.user.id}> `);
     //setup command variables
-    let mentioned = prefixMention.exec(message.content);
     let prefix = config.prefix;
-    if(message.content.toLowerCase().substring(0, prefix.length)!=prefix){
+    if(message.content.toLowerCase().substring(0, prefix.length)!=prefix && message.content){
       return;
     }
     let args = message.content.split(" ");

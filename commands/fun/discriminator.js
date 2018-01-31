@@ -47,6 +47,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['discriminator', 'discrim'],
-    usage: 'e-discrim <discriminator ex user#discriminator>',
+    usage: 'b-discrim <discriminator ex user#discriminator>',
     description: 'Get users with a discriminator'
 }

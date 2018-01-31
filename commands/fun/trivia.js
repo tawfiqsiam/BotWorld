@@ -28,7 +28,7 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             answerList[i] = (i + 1) + ') ' + answerList[i];
           }
           triviaEmbed.addField('Answers', answerList.join('\n'))
-          .addField('Answer by typing the command e-answer <answer number> :D in the next 30 seconds', 'ex. e-answer 2');
+          .addField('Answer by typing the command b-answer <answer number> :D in the next 30 seconds', 'ex. b-answer 2');
           let awnser = body.correct_answer.replaceAll('&quot;', '"').replaceAll('&#039;s', "'");
           let success = false;
           for(var i=0;i<config.trivia.length;i++){
@@ -49,6 +49,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['trivia'],
-    usage: 'e-trivia',
+    usage: 'b-trivia',
     description: 'Get a trivia question'
 }

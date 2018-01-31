@@ -13,6 +13,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['botprofile', 'bp'],
-    usage: 'e-botprofile',
+    usage: 'b-botprofile',
     description: 'Get my DBL profile link'
 }

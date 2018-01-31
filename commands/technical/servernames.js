@@ -12,6 +12,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
 
 module.exports.help = {
     names: ['servernames', 'sn'],
-    usage: 'e-servernames',
+    usage: 'b-servernames',
     description: 'Get what servers I am in'
 }
