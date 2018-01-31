@@ -136,9 +136,11 @@ bot.on('guildCreate', updateDiscordBotList);
 bot.on('guildDelete', updateDiscordBotList);
 
 bot.on('message', function(message){
+    let prefixMention = new RegExp(`^<@!?${bot.user.id}> `);
     //setup command variables
+    let mentioned = prefixMention.exec(message.content);
     let prefix = config.prefix;
-    if(message.content.toLowerCase().substring(0, prefix.length)!=prefix && message.content){
+    if(message.content.toLowerCase().substring(0, prefix.length)!=prefix){
       return;
     }
     let args = message.content.split(" ");
