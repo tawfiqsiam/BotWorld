@@ -22,7 +22,8 @@ const dbl = require(`discord-bot-list`);
 
 let bot = new Discord.Client({'disableEveryone': true});
 bot.commands = new Discord.Collection();
-bot.dispatchers = [];
+bot.queue;
+bot.dispatcher;
 
 //Read economy commands
 fs.readdir('./commands/economy/', function(err, files){
