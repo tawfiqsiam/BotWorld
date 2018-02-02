@@ -5,7 +5,7 @@ const search = require('youtube-search')
 
 var opts = {
   maxResults: 1,
-  key: 'AIzaSyCFgP40sEixaGAtalv2eh97dNJ695hVdCo'
+  key: config.yt
 };
 
 module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
