@@ -4,6 +4,7 @@ const config = require('./config.json');
 
 let bot = new Discord.Client();
 bot.commands = new Discord.Collection();
+bot.queue = [];
 //Load in the command files
 let index;
 for(index=0;index<config.commands.length;index++){
