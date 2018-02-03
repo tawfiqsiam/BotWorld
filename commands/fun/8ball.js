@@ -2,12 +2,11 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
+module.exports.run = function(bot, command, args, message){
         let ball = new Discord.RichEmbed()
-        .setColor('#50BB7C')
+        .setColor('#ffbb69')
         .setTitle(args.join(' '))
-        .setImage(`https://raw.githubusercontent.com/NicksWorld/DiscordEconomy/master/8ball%20images/${Math.floor(Math.random() * 8) + 1}.png`)
-        addFooter(ball, bot, message, command, args);
+        .setImage(`https://raw.githubusercontent.com/NicksWorld/DiscordEconomy/master/8ball%20images/${Math.floor(Math.random() * 8) + 1}.png`);
         message.channel.send(ball);
 }
 

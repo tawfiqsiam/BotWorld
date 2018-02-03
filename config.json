@@ -1,9 +1,6 @@
 {
-  "token": "",
-  "prefix": "e-",
-  "users": [],
-  "ranks": {},
-  "tickets": {
-    "total": 0
-  }
+    "token": "",
+    "prefix": "b-",
+    "commanddir": "/app/commands/",
+    "commands": ["basic", "fun", "admin", "economy"]
 }

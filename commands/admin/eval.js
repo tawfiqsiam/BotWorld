@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
 
-module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
+module.exports.run = function(bot, command, args, message){
     function clean(text) {
         if (typeof(text) === "string")
           return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
@@ -25,7 +25,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             .setTitle('Evaluation')
             .addField(':inbox_tray: Input', '```js\n' + code + '```')
             .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
-            addFooter(embed, bot, message, command, args);
             return message.channel.send(embed);
          }else{
             let embed = new Discord.RichEmbed()
@@ -33,7 +32,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
             .setTitle('Evaluation')
             .addField(':inbox_tray: Input', '```js\n undefined```')
             .addField(':outbox_tray: Output', '```xl\n' + cleaned + '```')
-            addFooter(embed, bot, message, command, args);
             return message.channel.send(embed);
          }
       } catch (err) {
@@ -42,7 +40,6 @@ module.exports.run = function(bot, command, args, message, updateJSON, addFooter
         .setTitle('Error')
         .addField(':inbox_tray: Input', '```js\n' + args.join(" ") + '```')
         .addField(':outbox_tray: Output', '```xl\n' + err.toString() + '```')
-        addFooter(embed, bot, message, command, args);
         return message.channel.send(embed);
      }
         return;

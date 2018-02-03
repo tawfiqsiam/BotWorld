@@ -1,45 +1,26 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const config = require(`./../../config.json`);
+const economy = require('./../../plugins/economy.js')
 
-module.exports.run = function(bot, command, args, message, updateJSON, addFooter){
-        let usage = 'b-bal <user mention (optional)>';
-        let user = message.author.id;
-        if(args[0]!=null){
-            if(bot.users.find("id", args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))){
-                user = args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', '');
-            }else{
-                let noSuchUserEmbed = new Discord.RichEmbed()
-                .setColor('#FF4444')
-                .setTitle('Cannot find user')
-                .setDescription(`User '${args[0]}' couldn't be found!`)
-                .addField('Usage', usage)
-                addFooter(noSuchUserEmbed, bot, message, command, args);
-                return message.channel.send(noSuchUserEmbed);
-            }
+module.exports.run = function(bot, command, args, message){
+    if(args[0]!=undefined && args[0]!=''){
+        if(bot.users.find("id", args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))){
+            let balanceEmbed = new Discord.RichEmbed()
+            .addField(`${bot.users.get(args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', '')).username}'s Balance`, `$${economy.getBalance(args[0].replace('<', '').replace('!', '').replace('@', '').replace('>', ''))}`)
+            message.channel.send(balanceEmbed);
+        }else{
+            console.log('test')
         }
-        let authorInfo;
-        for(var i = 0;i<config.users.length;i++){
-            if(config.users[i].id==user){
-                authorInfo = config.users[i];
-            }
-        }
-        if(authorInfo==undefined){
-            config.users[i] = {"id": user, "balance": 0, "rank": 0, "username": bot.users.get(user).username, "lastPayday": 'never'};
-            updateJSON();
-            authorInfo = config.users[i];
-        }
-
+    }else{
         let balanceEmbed = new Discord.RichEmbed()
-        .setDescription(`${bot.users.get(user).username}'s Balance`)
-        .setColor('#50BB7C')
-        .addField('Balance', authorInfo.balance)
-        addFooter(balanceEmbed, bot, message, command, args);
-        return message.channel.send(balanceEmbed);
+        .addField(`${message.author.username}'s Balance`, `$${economy.getBalance(message.author.id)}`);
+        message.channel.send(balanceEmbed);
+    }
 }
 
 module.exports.help = {
-    names: ['balance', 'bal'],
-    usage: 'b-bal <user mention (optional)',
-    description: 'Get a users balance'
+    names: ['balance'],
+    usage: 'b-8ball <question>',
+    description: 'Ask a question...'
 }
