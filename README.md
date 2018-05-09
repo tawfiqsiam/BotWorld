@@ -1,6 +1,7 @@
 # BotWorld
 
 [![Discord Bots](https://discordbots.org/api/widget/404762043527462922.svg)](https://discordbots.org/bot/404762043527462922)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FNicksWorld%2FBotWorld.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FNicksWorld%2FBotWorld?ref=badge_shield)
 
  - What is it?<br>
  BotWorld is a discord bot user using discord.js that adds economy commands along with some fun commands. Discord BotWorld#1500's prefix is 'e-'. This code will not always be up to date with the current version of the bot.
@@ -45,3 +46,7 @@
  - Where to get it?<br>
  https://discordapp.com/oauth2/authorize?client_id=404762043527462922&scope=bot&permissions=8
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FNicksWorld%2FBotWorld.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FNicksWorld%2FBotWorld?ref=badge_large)
