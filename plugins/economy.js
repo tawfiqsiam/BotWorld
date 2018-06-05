@@ -22,7 +22,7 @@ function updateJSON(){
      });
 }
 
-module.exports.setBalance = function(userID, amount){
+module.exports.setBalance = (userID, amount) => {
     if(!economy.users[userID.toString()]){
         economy.users[userID.toString()] = defaultSetup;
     }
@@ -30,7 +30,7 @@ module.exports.setBalance = function(userID, amount){
     updateJSON();
 }
 
-module.exports.getBalance = function(userID){
+module.exports.getBalance = (userID) => {
     if(economy.users[userID.toString()]==undefined){
         economy.users[userID.toString()] = defaultSetup;
         updateJSON();
@@ -38,7 +38,7 @@ module.exports.getBalance = function(userID){
     return economy.users[userID.toString()].balance;
 }
 
-module.exports.payDay = function(userID){
+module.exports.payDay = (userID) => {
     if(!economy.users[userID.toString()]){
         economy.users[userID.toString()] = defaultSetup;
         updateJSON();
