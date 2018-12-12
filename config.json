@@ -1,6 +1,6 @@
 {
-    "token": "",
-    "prefix": "b-",
+    "token": "NTIyNDk4OTMwNTk3MDM2MDQy.DvL2qA.ETw5DDgd7KBB-lrQG8T6bcdgPeA",
+    "prefix": "-",
     "commanddir": "/Users/coding.../Desktop/BotWorld 3.0/commands/",
     "commands": ["basic", "fun", "admin", "economy", "music"]
 }
